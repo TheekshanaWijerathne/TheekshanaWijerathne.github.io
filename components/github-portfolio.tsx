@@ -11,7 +11,7 @@ const featuredRepositories = [
     title: "Collaborative Learning Platform",
     description:
       "A microservices-based web platform for academic collaboration with personalized study plans, real-time editing, and gamified progress tracking.",
-    githubUrl: "https://github.com/collaborative-learning-platform",
+    githubUrl: "https://github.com/collaborative-learning-platform", // Reverted URL
     technologies: ["React.js", "Material UI", "NestJS", "PostgreSQL", "TypeORM", "Docker"],
     status: "In Development" as const,
     stars: 12,
@@ -25,7 +25,7 @@ const featuredRepositories = [
     title: "Intelligent Financial Advisor",
     description:
       "AI-powered financial advisory platform with stock prediction, budgeting, investment planning using ML models and financial APIs.",
-    githubUrl: "https://github.com/Intelligent-Advisor-Sem-4",
+    githubUrl: "https://github.com/Intelligent-Advisor-Sem-4", // Reverted URL
     technologies: ["FastAPI", "Next.js", "PostgreSQL", "YFinance API", "LSTM", "Python"],
     status: "Completed" as const,
     stars: 25,

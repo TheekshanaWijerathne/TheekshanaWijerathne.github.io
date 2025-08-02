@@ -311,7 +311,7 @@ function ModernProjectsSection() {
       period: "Jul 2025 – present",
       gradient: "from-blue-500 via-purple-500 to-cyan-500",
       icon: <Code className="w-8 h-8" />,
-      githubUrl: "https://github.com/collaborative-learning-platform",
+      githubUrl: "https://github.com/collaborative-learning-platform", // Reverted URL
       status: "In Development",
     },
     {
@@ -323,7 +323,7 @@ function ModernProjectsSection() {
       period: "Apr 2025 – May 2025",
       gradient: "from-green-500 via-emerald-500 to-teal-500",
       icon: <Zap className="w-8 h-8" />,
-      githubUrl: "https://github.com/Intelligent-Advisor-Sem-4",
+      githubUrl: "https://github.com/Intelligent-Advisor-Sem-4", // Reverted URL
       status: "Completed",
     },
     {
@@ -405,18 +405,6 @@ function ModernProjectsSection() {
 
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">{project.description}</p>
 
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tech.map((tech, techIndex) => (
-                    <Badge
-                      key={techIndex}
-                      variant="secondary"
-                      className="bg-white/50 dark:bg-black/20 hover:bg-white/70 dark:hover:bg-black/40 transition-all duration-300"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-
                 <div className="flex gap-3">
                   <Button
                     onClick={() => window.open(project.githubUrl, "_blank")}
@@ -427,7 +415,7 @@ function ModernProjectsSection() {
                   </Button>
                   <Button
                     variant="outline"
-                    onClick={() => window.open(project.githubUrl, "_blank")}
+                    onClick={() => window.open(project.githubUrl, "_blank")} // Assuming external link also goes to GitHub for now
                     className="px-4 py-3 rounded-full border-2 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all duration-300 cursor-pointer"
                   >
                     <ExternalLink className="w-5 h-5" />
