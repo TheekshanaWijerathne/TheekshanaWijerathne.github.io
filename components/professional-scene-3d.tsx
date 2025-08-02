@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { OrbitControls, PerspectiveCamera, Stars } from "@react-three/drei"
 import { useTheme } from "next-themes"
-import type * as THREE from "three"
+import * as THREE from "three"
 
 // Professional 3D Grid Component
 function ProfessionalGrid() {
@@ -49,7 +49,13 @@ function ProfessionalParticles() {
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={particleCount} array={positions} itemSize={3} />
+        <bufferAttribute 
+          attach="attributes-position" 
+          count={particleCount} 
+          array={positions} 
+          itemSize={3}
+          args={[positions, 3]}
+        />
       </bufferGeometry>
       <pointsMaterial
         size={0.02}
