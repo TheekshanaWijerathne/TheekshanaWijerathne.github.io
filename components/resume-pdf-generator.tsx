@@ -14,6 +14,18 @@ interface ResumePDFGeneratorProps {
 export function ResumePDFGenerator({ variant = "about", size = "lg", className = "" }: ResumePDFGeneratorProps) {
   const { theme } = useTheme()
 
+  // Function to download your actual CV PDF
+  const downloadCV = () => {
+    const link = document.createElement("a")
+    link.href = "/CV.pdf" // Path to your CV in public folder
+    link.download = "Theekshana_Wijerathne_CV.pdf"
+    link.target = "_blank" // Opens in new tab as backup
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  // Dynamic PDF generator for backup/alternative option
   const generateResumePDF = () => {
     const resumeHTML = `
 <!DOCTYPE html>
@@ -468,11 +480,11 @@ Email: dulanim@cse.mrt.ac.lk
     return (
       <Button
         size={size}
-        onClick={generateResumePDF}
+        onClick={downloadCV}
         className={`bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300 ${className}`}
       >
         <Download className="w-5 h-5 mr-2" />
-        Download Resume
+        Download CV
       </Button>
     )
   }
@@ -481,11 +493,11 @@ Email: dulanim@cse.mrt.ac.lk
     return (
       <Button
         size={size}
-        onClick={generateResumePDF}
+        onClick={downloadCV}
         className={`bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-green-500/25 transition-all duration-300 ${className}`}
       >
         <Download className="w-6 h-6 mr-2" />
-        Resume PDF
+        Download CV
       </Button>
     )
   }
@@ -500,15 +512,14 @@ Email: dulanim@cse.mrt.ac.lk
           Resume
         </h3>
         <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-          Download my complete resume with detailed project descriptions, technical skills, and achievements in both
-          HTML and text formats.
+          Download my complete resume with detailed project descriptions, technical skills, and professional experience.
         </p>
         <Button
-          onClick={generateResumePDF}
+          onClick={downloadCV}
           className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
         >
           <Download className="w-5 h-5 mr-2" />
-          Download Full Resume
+          Download CV
         </Button>
       </div>
     </motion.div>
