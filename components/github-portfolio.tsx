@@ -172,7 +172,7 @@ export function GitHubPortfolio() {
             {githubStats.languagesUsed.map((language, index) => (
               <Badge
                 key={index}
-                className="px-6 py-3 text-base bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-700 hover:scale-105 transition-transform duration-300"
+                className="px-6 py-3 text-base bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 hover:scale-105 transition-all duration-300 shadow-sm"
               >
                 <Code className="w-4 h-4 mr-2" />
                 {language}
