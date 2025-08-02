@@ -1,8 +1,5 @@
 "use client"
-
-import dynamic from "next/dynamic"
-import { Canvas } from "@react-three/fiber"
-import { Suspense, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -31,9 +28,7 @@ import { GlassCard } from "@/components/glass-card"
 import { AnimatedBackground } from "@/components/animated-background"
 import { SocialLinks } from "@/components/social-links"
 import { GitHubPortfolio } from "@/components/github-portfolio"
-
-// Dynamically import ProfessionalScene3D to ensure client-side rendering
-const ProfessionalScene3D = dynamic(() => import("@/components/professional-scene-3d"), { ssr: false })
+import { Hero3DBackground } from "@/components/hero-3d-background" // Import the new component
 
 // Professional Hero Section
 function ModernHeroSection() {
@@ -53,17 +48,9 @@ function ModernHeroSection() {
       style={{ y, opacity }}
     >
       {/* Professional 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-30">
-        <Canvas>
-          <Suspense fallback={null}>
-            <ProfessionalScene3D />
-          </Suspense>
-        </Canvas>
-      </div>
-
+      <Hero3DBackground /> {/* Use the new component here */}
       {/* Professional Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 z-5" />
-
       {/* Hero Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
         <motion.div
@@ -150,7 +137,6 @@ function ModernHeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
       {/* Professional Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60"
