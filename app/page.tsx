@@ -28,7 +28,7 @@ import { GlassCard } from "@/components/glass-card"
 import { AnimatedBackground } from "@/components/animated-background"
 import { SocialLinks } from "@/components/social-links"
 import { GitHubPortfolio } from "@/components/github-portfolio"
-import { Hero3DBackground } from "@/components/hero-3d-background" // Import the new component
+// import { Hero3DBackground } from "@/components/hero-3d-background" // Import the new component - temporarily disabled
 
 // Professional Hero Section
 function ModernHeroSection() {
@@ -47,8 +47,8 @@ function ModernHeroSection() {
       className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-slate-900 to-black"
       style={{ y, opacity }}
     >
-      {/* Professional 3D Background */}
-      <Hero3DBackground /> {/* Use the new component here */}
+      {/* Professional 3D Background - Temporarily disabled */}
+      {/* <Hero3DBackground /> */}
       {/* Professional Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 z-5" />
       {/* Hero Content */}
