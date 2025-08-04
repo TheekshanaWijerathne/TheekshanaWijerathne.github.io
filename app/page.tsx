@@ -1,8 +1,5 @@
 "use client"
-
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls, PerspectiveCamera, Stars } from "@react-three/drei"
-import { Suspense, useRef, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -23,128 +20,15 @@ import {
   Zap,
   Rocket,
 } from "lucide-react"
-import type * as THREE from "three"
 import { ResumePDFGenerator } from "@/components/resume-pdf-generator"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { ModernCursor } from "@/components/modern-cursor"
 import { FloatingNav } from "@/components/floating-nav"
 import { GlassCard } from "@/components/glass-card"
 import { AnimatedBackground } from "@/components/animated-background"
-import { useTheme } from "next-themes"
-import { useFrame } from "@react-three/fiber"
-
-// Professional 3D Grid Component
-function ProfessionalGrid() {
-  const meshRef = useRef<THREE.Mesh>(null)
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.1
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.1
-    }
-  })
-
-  return (
-    <mesh ref={meshRef} position={[0, 0, -5]}>
-      <planeGeometry args={[20, 20, 50, 50]} />
-      <meshStandardMaterial color="#1e293b" wireframe transparent opacity={0.1} />
-    </mesh>
-  )
-}
-
-// Professional Particle System
-function ProfessionalParticles() {
-  const pointsRef = useRef<THREE.Points>(null)
-  const { theme } = useTheme()
-
-  const particleCount = 100
-  const positions = new Float32Array(particleCount * 3)
-
-  for (let i = 0; i < particleCount; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 20
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 20
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 10
-  }
-
-  useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.05
-      pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.1
-    }
-  })
-
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={particleCount} array={positions} itemSize={3} />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.02}
-        color={theme === "dark" ? "#3b82f6" : "#1e40af"}
-        transparent
-        opacity={0.6}
-        sizeAttenuation
-      />
-    </points>
-  )
-}
-
-// Professional Wave Geometry
-function ProfessionalWaves() {
-  const meshRef = useRef<THREE.Mesh>(null)
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      const geometry = meshRef.current.geometry as THREE.PlaneGeometry
-      const positions = geometry.attributes.position.array as Float32Array
-
-      for (let i = 0; i < positions.length; i += 3) {
-        const x = positions[i]
-        const y = positions[i + 1]
-        positions[i + 2] =
-          Math.sin(x * 0.5 + state.clock.elapsedTime) * 0.3 + Math.cos(y * 0.5 + state.clock.elapsedTime * 0.7) * 0.2
-      }
-
-      geometry.attributes.position.needsUpdate = true
-      geometry.computeVertexNormals()
-    }
-  })
-
-  return (
-    <mesh ref={meshRef} position={[0, 0, -8]} rotation={[-Math.PI / 4, 0, 0]}>
-      <planeGeometry args={[15, 15, 30, 30]} />
-      <meshStandardMaterial color="#1e293b" wireframe transparent opacity={0.08} />
-    </mesh>
-  )
-}
-
-// Professional 3D Scene
-function ProfessionalScene3D() {
-  const { theme } = useTheme()
-
-  return (
-    <>
-      <PerspectiveCamera makeDefault position={[0, 0, 8]} />
-      <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={false} />
-
-      {/* Subtle ambient lighting */}
-      <ambientLight intensity={theme === "dark" ? 0.2 : 0.3} />
-      <directionalLight
-        position={[5, 5, 5]}
-        intensity={theme === "dark" ? 0.3 : 0.4}
-        color={theme === "dark" ? "#3b82f6" : "#1e40af"}
-      />
-
-      {/* Professional geometric elements */}
-      <ProfessionalGrid />
-      <ProfessionalParticles />
-      <ProfessionalWaves />
-
-      {/* Subtle stars for depth */}
-      <Stars radius={50} depth={30} count={1000} factor={2} saturation={0} fade speed={0.5} />
-    </>
-  )
-}
+import { SocialLinks } from "@/components/social-links"
+import { GitHubPortfolio } from "@/components/github-portfolio"
+import { Hero3DBackground } from "@/components/hero-3d-background" // Import the new component
 
 // Professional Hero Section
 function ModernHeroSection() {
@@ -164,17 +48,9 @@ function ModernHeroSection() {
       style={{ y, opacity }}
     >
       {/* Professional 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-30">
-        <Canvas>
-          <Suspense fallback={null}>
-            <ProfessionalScene3D />
-          </Suspense>
-        </Canvas>
-      </div>
-
+      <Hero3DBackground /> {/* Use the new component here */}
       {/* Professional Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 z-5" />
-
       {/* Hero Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
         <motion.div
@@ -251,6 +127,7 @@ function ModernHeroSection() {
             <Button
               size="lg"
               variant="outline"
+              onClick={() => window.open("https://github.com/TheekshanaWijerathne", "_blank")}
               className="border border-white/20 text-white hover:bg-white/10 bg-white/5 backdrop-blur-sm px-8 py-3 text-base font-medium rounded-lg transition-all duration-300"
             >
               <Github className="w-5 h-5 mr-2" />
@@ -260,7 +137,6 @@ function ModernHeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
       {/* Professional Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60"
@@ -335,21 +211,28 @@ function ModernAboutSection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-8">
               <Button
                 variant="outline"
-                className="flex items-center gap-2 bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900/20 border-2 px-6 py-3 rounded-full"
+                onClick={() => window.open("mailto:theekshana.22@cse.mrc.ac.lk", "_blank")}
+                className="flex items-center gap-2 bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900/20 border-2 px-6 py-3 rounded-full cursor-pointer"
               >
                 <Mail className="w-5 h-5" />
                 theekshana.22@cse.mrc.ac.lk
               </Button>
               <Button
                 variant="outline"
-                className="flex items-center gap-2 bg-transparent hover:bg-green-50 dark:hover:bg-green-900/20 border-2 px-6 py-3 rounded-full"
+                onClick={() => window.open("tel:+94761541254", "_blank")}
+                className="flex items-center gap-2 bg-transparent hover:bg-green-50 dark:hover:bg-green-900/20 border-2 px-6 py-3 rounded-full cursor-pointer"
               >
                 <Phone className="w-5 h-5" />
                 0761541254
               </Button>
+            </div>
+
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Connect with me</h4>
+              <SocialLinks variant="minimal" />
             </div>
           </motion.div>
 
@@ -428,6 +311,8 @@ function ModernProjectsSection() {
       period: "Jul 2025 – present",
       gradient: "from-blue-500 via-purple-500 to-cyan-500",
       icon: <Code className="w-8 h-8" />,
+      githubUrl: "https://github.com/collaborative-learning-platform", // Reverted URL
+      status: "In Development",
     },
     {
       title: "Intelligent Financial Advisor",
@@ -438,6 +323,8 @@ function ModernProjectsSection() {
       period: "Apr 2025 – May 2025",
       gradient: "from-green-500 via-emerald-500 to-teal-500",
       icon: <Zap className="w-8 h-8" />,
+      githubUrl: "https://github.com/Intelligent-Advisor-Sem-4", // Reverted URL
+      status: "Completed",
     },
     {
       title: "HR Management System",
@@ -448,6 +335,8 @@ function ModernProjectsSection() {
       period: "Aug 2024 – Oct 2024",
       gradient: "from-purple-500 via-pink-500 to-rose-500",
       icon: <Database className="w-8 h-8" />,
+      githubUrl: "https://github.com/TheekshanaWijerathne/HRMS",
+      status: "Completed",
     },
   ]
 
@@ -489,8 +378,20 @@ function ModernProjectsSection() {
               <GlassCard className="h-full p-8 hover:shadow-2xl">
                 <div className={`w-full h-2 bg-gradient-to-r ${project.gradient} rounded-full mb-6`} />
 
-                <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${project.gradient} text-white mb-6`}>
-                  {project.icon}
+                <div className="flex items-center justify-between mb-6">
+                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${project.gradient} text-white`}>
+                    {project.icon}
+                  </div>
+                  <Badge
+                    variant={project.status === "Completed" ? "default" : "secondary"}
+                    className={`${
+                      project.status === "Completed"
+                        ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+                        : "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400"
+                    } font-semibold`}
+                  >
+                    {project.status}
+                  </Badge>
                 </div>
 
                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300">
@@ -504,29 +405,46 @@ function ModernProjectsSection() {
 
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">{project.description}</p>
 
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tech.map((tech, techIndex) => (
-                    <Badge
-                      key={techIndex}
-                      variant="secondary"
-                      className="bg-white/50 dark:bg-black/20 hover:bg-white/70 dark:hover:bg-black/40 transition-all duration-300"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
+                <div className="flex gap-3">
+                  <Button
+                    onClick={() => window.open(project.githubUrl, "_blank")}
+                    className="flex-1 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white border-0 py-3 rounded-full font-semibold transition-all duration-300 cursor-pointer"
+                  >
+                    <Github className="w-5 h-5 mr-2" />
+                    View Code
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => window.open(project.githubUrl, "_blank")} // Assuming external link also goes to GitHub for now
+                    className="px-4 py-3 rounded-full border-2 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white hover:border-transparent transition-all duration-300 cursor-pointer"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </Button>
                 </div>
-
-                <Button
-                  variant="outline"
-                  className="w-full group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-500 group-hover:text-white group-hover:border-transparent transition-all duration-300 py-3 rounded-full font-semibold bg-transparent"
-                >
-                  <ExternalLink className="w-5 h-5 mr-2" />
-                  View Project
-                </Button>
               </GlassCard>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg">
+            Want to see more of my work? Check out my complete portfolio on GitHub.
+          </p>
+          <Button
+            size="lg"
+            onClick={() => window.open("https://github.com/TheekshanaWijerathne", "_blank")}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 cursor-pointer"
+          >
+            <Github className="w-6 h-6 mr-2" />
+            View All Repositories
+          </Button>
+        </motion.div>
       </div>
     </section>
   )
@@ -689,13 +607,19 @@ function ModernContactSection() {
           viewport={{ once: true }}
           className="grid md:grid-cols-2 gap-8 mb-16"
         >
-          <GlassCard className="p-8 text-center hover:bg-white/20">
+          <GlassCard
+            className="p-8 text-center hover:bg-white/20 cursor-pointer"
+            onClick={() => window.open("mailto:theekshana.22@cse.mrc.ac.lk", "_blank")}
+          >
             <Mail className="w-12 h-12 mx-auto mb-6 text-blue-400" />
             <h3 className="text-2xl font-bold mb-4">Email</h3>
             <p className="text-gray-300 text-lg">theekshana.22@cse.mrc.ac.lk</p>
           </GlassCard>
 
-          <GlassCard className="p-8 text-center hover:bg-white/20">
+          <GlassCard
+            className="p-8 text-center hover:bg-white/20 cursor-pointer"
+            onClick={() => window.open("tel:+94761541254", "_blank")}
+          >
             <Phone className="w-12 h-12 mx-auto mb-6 text-green-400" />
             <h3 className="text-2xl font-bold mb-4">Phone</h3>
             <p className="text-gray-300 text-lg">0761541254</p>
@@ -711,14 +635,16 @@ function ModernContactSection() {
         >
           <Button
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
+            onClick={() => window.open("https://github.com/TheekshanaWijerathne", "_blank")}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 cursor-pointer"
           >
             <Github className="w-6 h-6 mr-2" />
             GitHub
           </Button>
           <Button
             size="lg"
-            className="bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-800 hover:to-indigo-800 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
+            onClick={() => window.open("https://linkedin.com/in/theekshana-wijerathne-0b84a9268", "_blank")}
+            className="bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-800 hover:to-indigo-800 text-white border-0 px-8 py-4 text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 cursor-pointer"
           >
             <Linkedin className="w-6 h-6 mr-2" />
             LinkedIn
@@ -726,7 +652,8 @@ function ModernContactSection() {
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-white/30 text-white hover:bg-white hover:text-black bg-white/10 backdrop-blur-md px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300"
+            onClick={() => window.open("mailto:theekshana.22@cse.mrc.ac.lk", "_blank")}
+            className="border-2 border-white/30 text-white hover:bg-white hover:text-black bg-white/10 backdrop-blur-md px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 cursor-pointer"
           >
             <Mail className="w-6 h-6 mr-2" />
             Email Me
@@ -749,6 +676,7 @@ export default function ModernPortfolio() {
       <ModernHeroSection />
       <ModernAboutSection />
       <ModernProjectsSection />
+      <GitHubPortfolio />
       <ModernSkillsSection />
       <ModernContactSection />
     </div>

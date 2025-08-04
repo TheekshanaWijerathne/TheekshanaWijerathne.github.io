@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Home, User, Briefcase, Code, Mail } from "lucide-react"
+import { Home, User, Briefcase, Code, Mail, Github } from "lucide-react"
 
 const navItems = [
   { icon: Home, label: "Home", href: "#home" },
@@ -11,6 +11,7 @@ const navItems = [
   { icon: Briefcase, label: "Projects", href: "#projects" },
   { icon: Code, label: "Skills", href: "#skills" },
   { icon: Mail, label: "Contact", href: "#contact" },
+  { icon: Github, label: "GitHub", href: "https://github.com/TheekshanaWijerathne", external: true },
 ]
 
 export function FloatingNav() {
@@ -26,9 +27,13 @@ export function FloatingNav() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    element?.scrollIntoView({ behavior: "smooth" })
+  const scrollToSection = (href: string, external?: boolean) => {
+    if (external) {
+      window.open(href, "_blank")
+    } else {
+      const element = document.querySelector(href)
+      element?.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   return (
@@ -46,7 +51,7 @@ export function FloatingNav() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => scrollToSection(item.href, item.external)}
                   className="relative rounded-full hover:bg-white/20 dark:hover:bg-white/10 transition-all duration-300"
                 >
                   <item.icon className="w-4 h-4" />

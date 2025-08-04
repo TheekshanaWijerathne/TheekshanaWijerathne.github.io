@@ -7,9 +7,10 @@ interface GlassCardProps {
   children: ReactNode
   className?: string
   hover?: boolean
+  onClick?: () => void
 }
 
-export function GlassCard({ children, className = "", hover = true }: GlassCardProps) {
+export function GlassCard({ children, className = "", hover = true, onClick }: GlassCardProps) {
   return (
     <motion.div
       className={`
@@ -19,11 +20,13 @@ export function GlassCard({ children, className = "", hover = true }: GlassCardP
         border border-white/20 dark:border-white/10
         shadow-xl dark:shadow-2xl
         ${hover ? "hover:bg-white/20 dark:hover:bg-black/20" : ""}
+        ${onClick ? "cursor-pointer" : ""}
         transition-all duration-300
         ${className}
       `}
       whileHover={hover ? { y: -5, scale: 1.02 } : {}}
       transition={{ duration: 0.3 }}
+      onClick={onClick}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent dark:from-white/5 dark:to-transparent" />
       <div className="relative z-10">{children}</div>
