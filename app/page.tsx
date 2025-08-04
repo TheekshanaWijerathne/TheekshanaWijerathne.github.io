@@ -19,6 +19,15 @@ import {
   Sparkles,
   Zap,
   Rocket,
+  Globe,
+  Server,
+  Monitor,
+  Layers,
+  FileCode,
+  Brain,
+  BarChart3,
+  Palette,
+  Settings,
 } from "lucide-react"
 import { ResumePDFGenerator } from "@/components/resume-pdf-generator"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -29,6 +38,77 @@ import { AnimatedBackground } from "@/components/animated-background"
 import { SocialLinks } from "@/components/social-links"
 import { GitHubPortfolio } from "@/components/github-portfolio"
 // import { Hero3DBackground } from "@/components/hero-3d-background" // Import the new component - temporarily disabled
+
+// Tech Stack Icon Mapping with Categories
+const getTechIcon = (tech: string) => {
+  const techIcons: Record<string, JSX.Element> = {
+    "React.js": <Code className="w-4 h-4" />,
+    "React": <Code className="w-4 h-4" />,
+    "Next.js": <Globe className="w-4 h-4" />,
+    "TypeScript": <FileCode className="w-4 h-4" />,
+    "JavaScript": <FileCode className="w-4 h-4" />,
+    "Node.js": <Server className="w-4 h-4" />,
+    "Express": <Server className="w-4 h-4" />,
+    "NestJS": <Layers className="w-4 h-4" />,
+    "FastAPI": <Zap className="w-4 h-4" />,
+    "Python": <Code className="w-4 h-4" />,
+    "Java": <Code className="w-4 h-4" />,
+    "PostgreSQL": <Database className="w-4 h-4" />,
+    "MySQL": <Database className="w-4 h-4" />,
+    "MongoDB": <Database className="w-4 h-4" />,
+    "Material UI": <Palette className="w-4 h-4" />,
+    "Bootstrap": <Palette className="w-4 h-4" />,
+    "Tailwind CSS": <Palette className="w-4 h-4" />,
+    "Docker": <Settings className="w-4 h-4" />,
+    "AWS": <Cloud className="w-4 h-4" />,
+    "Vercel": <Cloud className="w-4 h-4" />,
+    "YFinance API": <BarChart3 className="w-4 h-4" />,
+    "LSTM": <Brain className="w-4 h-4" />,
+    "React Native": <Smartphone className="w-4 h-4" />,
+  }
+  
+  return techIcons[tech] || <Code className="w-4 h-4" />
+}
+
+// Tech Stack Category Colors
+const getTechCategory = (tech: string) => {
+  const categories: Record<string, { color: string; bgColor: string; hoverColor: string }> = {
+    // Frontend
+    "React.js": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "React": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "Next.js": { color: "text-gray-800 dark:text-gray-200", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" },
+    "TypeScript": { color: "text-blue-700 dark:text-blue-300", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "JavaScript": { color: "text-yellow-600 dark:text-yellow-400", bgColor: "bg-yellow-50 dark:bg-yellow-900/20", hoverColor: "hover:bg-yellow-100 dark:hover:bg-yellow-900/30" },
+    "Material UI": { color: "text-indigo-600 dark:text-indigo-400", bgColor: "bg-indigo-50 dark:bg-indigo-900/20", hoverColor: "hover:bg-indigo-100 dark:hover:bg-indigo-900/30" },
+    "Bootstrap": { color: "text-purple-600 dark:text-purple-400", bgColor: "bg-purple-50 dark:bg-purple-900/20", hoverColor: "hover:bg-purple-100 dark:hover:bg-purple-900/30" },
+    "Tailwind CSS": { color: "text-cyan-600 dark:text-cyan-400", bgColor: "bg-cyan-50 dark:bg-cyan-900/20", hoverColor: "hover:bg-cyan-100 dark:hover:bg-cyan-900/30" },
+    
+    // Backend
+    "Node.js": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    "Express": { color: "text-gray-700 dark:text-gray-300", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" },
+    "NestJS": { color: "text-red-600 dark:text-red-400", bgColor: "bg-red-50 dark:bg-red-900/20", hoverColor: "hover:bg-red-100 dark:hover:bg-red-900/30" },
+    "FastAPI": { color: "text-emerald-600 dark:text-emerald-400", bgColor: "bg-emerald-50 dark:bg-emerald-900/20", hoverColor: "hover:bg-emerald-100 dark:hover:bg-emerald-900/30" },
+    "Python": { color: "text-yellow-600 dark:text-yellow-400", bgColor: "bg-yellow-50 dark:bg-yellow-900/20", hoverColor: "hover:bg-yellow-100 dark:hover:bg-yellow-900/30" },
+    "Java": { color: "text-orange-600 dark:text-orange-400", bgColor: "bg-orange-50 dark:bg-orange-900/20", hoverColor: "hover:bg-orange-100 dark:hover:bg-orange-900/30" },
+    
+    // Database
+    "PostgreSQL": { color: "text-blue-700 dark:text-blue-300", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "MySQL": { color: "text-orange-600 dark:text-orange-400", bgColor: "bg-orange-50 dark:bg-orange-900/20", hoverColor: "hover:bg-orange-100 dark:hover:bg-orange-900/30" },
+    "MongoDB": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    
+    // Cloud & DevOps
+    "Docker": { color: "text-blue-500 dark:text-blue-300", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "AWS": { color: "text-orange-500 dark:text-orange-300", bgColor: "bg-orange-50 dark:bg-orange-900/20", hoverColor: "hover:bg-orange-100 dark:hover:bg-orange-900/30" },
+    "Vercel": { color: "text-gray-800 dark:text-gray-200", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" },
+    
+    // Mobile & Others
+    "React Native": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "YFinance API": { color: "text-indigo-600 dark:text-indigo-400", bgColor: "bg-indigo-50 dark:bg-indigo-900/20", hoverColor: "hover:bg-indigo-100 dark:hover:bg-indigo-900/30" },
+    "LSTM": { color: "text-purple-600 dark:text-purple-400", bgColor: "bg-purple-50 dark:bg-purple-900/20", hoverColor: "hover:bg-purple-100 dark:hover:bg-purple-900/30" },
+  }
+  
+  return categories[tech] || { color: "text-gray-600 dark:text-gray-400", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" }
+}
 
 // Professional Hero Section
 function ModernHeroSection() {
@@ -405,6 +485,62 @@ function ModernProjectsSection() {
 
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">{project.description}</p>
 
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="p-1.5 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500">
+                      <Settings className="w-3 h-3 text-white" />
+                    </div>
+                    <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">
+                      Tech Stack
+                    </h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {project.tech.map((tech, techIndex) => {
+                      const category = getTechCategory(tech)
+                      return (
+                        <motion.div
+                          key={techIndex}
+                          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                          transition={{ 
+                            duration: 0.4, 
+                            delay: techIndex * 0.08,
+                            type: "spring",
+                            stiffness: 200
+                          }}
+                          viewport={{ once: true }}
+                          whileHover={{ 
+                            scale: 1.08, 
+                            y: -2,
+                            transition: { duration: 0.2 }
+                          }}
+                          className="group/tech"
+                        >
+                          <div className={`
+                            flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border shadow-sm
+                            ${category.bgColor} ${category.hoverColor}
+                            border-gray-200 dark:border-gray-600 
+                            hover:border-opacity-50 hover:shadow-md
+                            transition-all duration-300 ease-out
+                            backdrop-blur-sm
+                          `}>
+                            <div className={`${category.color} transition-all duration-300 group-hover/tech:scale-110`}>
+                              {getTechIcon(tech)}
+                            </div>
+                            <span className={`
+                              text-xs font-semibold tracking-wide
+                              ${category.color}
+                              transition-all duration-300
+                            `}>
+                              {tech}
+                            </span>
+                          </div>
+                        </motion.div>
+                      )
+                    })}
+                  </div>
+                </div>
+
                 <div className="flex gap-3">
                   <Button
                     onClick={() => window.open(project.githubUrl, "_blank")}
@@ -455,28 +591,56 @@ function ModernSkillsSection() {
   const skillCategories = [
     {
       title: "Frontend Development",
-      skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Material UI", "Framer Motion"],
+      skills: [
+        { name: "React.js", icon: <Code className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
+        { name: "Next.js", icon: <Globe className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
+        { name: "TypeScript", icon: <FileCode className="w-5 h-5" />, color: "text-blue-700 dark:text-blue-300" },
+        { name: "Tailwind CSS", icon: <Palette className="w-5 h-5" />, color: "text-cyan-600 dark:text-cyan-400" },
+        { name: "Material UI", icon: <Palette className="w-5 h-5" />, color: "text-indigo-600 dark:text-indigo-400" },
+        { name: "Framer Motion", icon: <Sparkles className="w-5 h-5" />, color: "text-purple-600 dark:text-purple-400" },
+      ],
       icon: <Code className="w-8 h-8" />,
       gradient: "from-blue-500 to-cyan-500",
       count: 6,
     },
     {
       title: "Backend Development",
-      skills: ["Node.js", "Express", "NestJS", "FastAPI", "Python", "Java"],
+      skills: [
+        { name: "Node.js", icon: <Server className="w-5 h-5" />, color: "text-green-600 dark:text-green-400" },
+        { name: "Express", icon: <Server className="w-5 h-5" />, color: "text-gray-700 dark:text-gray-300" },
+        { name: "NestJS", icon: <Layers className="w-5 h-5" />, color: "text-red-600 dark:text-red-400" },
+        { name: "FastAPI", icon: <Zap className="w-5 h-5" />, color: "text-emerald-600 dark:text-emerald-400" },
+        { name: "Python", icon: <Code className="w-5 h-5" />, color: "text-yellow-600 dark:text-yellow-400" },
+        { name: "Java", icon: <Code className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
+      ],
       icon: <Database className="w-8 h-8" />,
       gradient: "from-green-500 to-emerald-500",
       count: 6,
     },
     {
       title: "Database & Cloud",
-      skills: ["PostgreSQL", "MySQL", "MongoDB", "AWS", "Docker", "Vercel"],
+      skills: [
+        { name: "PostgreSQL", icon: <Database className="w-5 h-5" />, color: "text-blue-700 dark:text-blue-300" },
+        { name: "MySQL", icon: <Database className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
+        { name: "MongoDB", icon: <Database className="w-5 h-5" />, color: "text-green-600 dark:text-green-400" },
+        { name: "AWS", icon: <Cloud className="w-5 h-5" />, color: "text-orange-500 dark:text-orange-300" },
+        { name: "Docker", icon: <Settings className="w-5 h-5" />, color: "text-blue-500 dark:text-blue-300" },
+        { name: "Vercel", icon: <Cloud className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
+      ],
       icon: <Cloud className="w-8 h-8" />,
       gradient: "from-purple-500 to-pink-500",
       count: 6,
     },
     {
       title: "Mobile & Tools",
-      skills: ["React Native", "Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma"],
+      skills: [
+        { name: "React Native", icon: <Smartphone className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
+        { name: "Git", icon: <Code className="w-5 h-5" />, color: "text-red-600 dark:text-red-400" },
+        { name: "GitHub", icon: <Github className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
+        { name: "VS Code", icon: <Monitor className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
+        { name: "IntelliJ IDEA", icon: <Monitor className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
+        { name: "Figma", icon: <Palette className="w-5 h-5" />, color: "text-purple-600 dark:text-purple-400" },
+      ],
       icon: <Smartphone className="w-8 h-8" />,
       gradient: "from-orange-500 to-red-500",
       count: 6,
@@ -541,13 +705,18 @@ function ModernSkillsSection() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: skillIndex * 0.05 }}
                       viewport={{ once: true }}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
                       className="group/skill"
                     >
-                      <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
-                        <span className="font-semibold text-gray-700 dark:text-gray-300 group-hover/skill:text-blue-600 dark:group-hover/skill:text-blue-400 transition-colors duration-300">
-                          {skill}
-                        </span>
+                      <div className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 shadow-sm hover:shadow-md">
+                        <div className="flex items-center gap-3">
+                          <div className={`${skill.color} transition-all duration-300 group-hover/skill:scale-110`}>
+                            {skill.icon}
+                          </div>
+                          <span className={`font-semibold text-sm ${skill.color} transition-colors duration-300`}>
+                            {skill.name}
+                          </span>
+                        </div>
                       </div>
                     </motion.div>
                   ))}
