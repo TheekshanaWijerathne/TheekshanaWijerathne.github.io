@@ -29,6 +29,32 @@ import {
   Palette,
   Settings,
 } from "lucide-react"
+import { 
+  SiReact, 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiJavascript, 
+  SiNodedotjs, 
+  SiExpress, 
+  SiNestjs, 
+  SiFastapi, 
+  SiPython, 
+  SiPostgresql, 
+  SiMysql, 
+  SiMongodb, 
+  SiMui, 
+  SiBootstrap, 
+  SiTailwindcss, 
+  SiDocker, 
+  SiAmazon, 
+  SiVercel, 
+  SiFramer,
+  SiGit,
+  SiGithub,
+  SiIntellijidea,
+  SiFigma
+} from "react-icons/si"
+import { VscCode } from "react-icons/vsc"
 import { ResumePDFGenerator } from "@/components/resume-pdf-generator"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { ModernCursor } from "@/components/modern-cursor"
@@ -70,44 +96,44 @@ const getTechIcon = (tech: string) => {
   return techIcons[tech] || <Code className="w-4 h-4" />
 }
 
-// Tech Stack Category Colors
+// Tech Stack Category Colors - Simplified and Clean Color Scheme
 const getTechCategory = (tech: string) => {
   const categories: Record<string, { color: string; bgColor: string; hoverColor: string }> = {
-    // Frontend
+    // Frontend Technologies - Blue
     "React.js": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
     "React": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
-    "Next.js": { color: "text-gray-800 dark:text-gray-200", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" },
-    "TypeScript": { color: "text-blue-700 dark:text-blue-300", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
-    "JavaScript": { color: "text-yellow-600 dark:text-yellow-400", bgColor: "bg-yellow-50 dark:bg-yellow-900/20", hoverColor: "hover:bg-yellow-100 dark:hover:bg-yellow-900/30" },
-    "Material UI": { color: "text-indigo-600 dark:text-indigo-400", bgColor: "bg-indigo-50 dark:bg-indigo-900/20", hoverColor: "hover:bg-indigo-100 dark:hover:bg-indigo-900/30" },
-    "Bootstrap": { color: "text-purple-600 dark:text-purple-400", bgColor: "bg-purple-50 dark:bg-purple-900/20", hoverColor: "hover:bg-purple-100 dark:hover:bg-purple-900/30" },
-    "Tailwind CSS": { color: "text-cyan-600 dark:text-cyan-400", bgColor: "bg-cyan-50 dark:bg-cyan-900/20", hoverColor: "hover:bg-cyan-100 dark:hover:bg-cyan-900/30" },
+    "Next.js": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "TypeScript": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "JavaScript": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "Material UI": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "Bootstrap": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+    "Tailwind CSS": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
     
-    // Backend
+    // Backend Technologies - Green
     "Node.js": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
-    "Express": { color: "text-gray-700 dark:text-gray-300", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" },
-    "NestJS": { color: "text-red-600 dark:text-red-400", bgColor: "bg-red-50 dark:bg-red-900/20", hoverColor: "hover:bg-red-100 dark:hover:bg-red-900/30" },
-    "FastAPI": { color: "text-emerald-600 dark:text-emerald-400", bgColor: "bg-emerald-50 dark:bg-emerald-900/20", hoverColor: "hover:bg-emerald-100 dark:hover:bg-emerald-900/30" },
-    "Python": { color: "text-yellow-600 dark:text-yellow-400", bgColor: "bg-yellow-50 dark:bg-yellow-900/20", hoverColor: "hover:bg-yellow-100 dark:hover:bg-yellow-900/30" },
-    "Java": { color: "text-orange-600 dark:text-orange-400", bgColor: "bg-orange-50 dark:bg-orange-900/20", hoverColor: "hover:bg-orange-100 dark:hover:bg-orange-900/30" },
+    "Express": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    "NestJS": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    "FastAPI": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    "Python": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    "Java": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
     
-    // Database
-    "PostgreSQL": { color: "text-blue-700 dark:text-blue-300", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
-    "MySQL": { color: "text-orange-600 dark:text-orange-400", bgColor: "bg-orange-50 dark:bg-orange-900/20", hoverColor: "hover:bg-orange-100 dark:hover:bg-orange-900/30" },
-    "MongoDB": { color: "text-green-600 dark:text-green-400", bgColor: "bg-green-50 dark:bg-green-900/20", hoverColor: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    // Database Technologies - Purple
+    "PostgreSQL": { color: "text-purple-600 dark:text-purple-400", bgColor: "bg-purple-50 dark:bg-purple-900/20", hoverColor: "hover:bg-purple-100 dark:hover:bg-purple-900/30" },
+    "MySQL": { color: "text-purple-600 dark:text-purple-400", bgColor: "bg-purple-50 dark:bg-purple-900/20", hoverColor: "hover:bg-purple-100 dark:hover:bg-purple-900/30" },
+    "MongoDB": { color: "text-purple-600 dark:text-purple-400", bgColor: "bg-purple-50 dark:bg-purple-900/20", hoverColor: "hover:bg-purple-100 dark:hover:bg-purple-900/30" },
     
-    // Cloud & DevOps
-    "Docker": { color: "text-blue-500 dark:text-blue-300", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
-    "AWS": { color: "text-orange-500 dark:text-orange-300", bgColor: "bg-orange-50 dark:bg-orange-900/20", hoverColor: "hover:bg-orange-100 dark:hover:bg-orange-900/30" },
-    "Vercel": { color: "text-gray-800 dark:text-gray-200", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" },
+    // Cloud & DevOps - Gray
+    "Docker": { color: "text-gray-600 dark:text-gray-400", bgColor: "bg-gray-50 dark:bg-gray-800/40", hoverColor: "hover:bg-gray-100 dark:hover:bg-gray-700/60" },
+    "AWS": { color: "text-gray-600 dark:text-gray-400", bgColor: "bg-gray-50 dark:bg-gray-800/40", hoverColor: "hover:bg-gray-100 dark:hover:bg-gray-700/60" },
+    "Vercel": { color: "text-gray-600 dark:text-gray-400", bgColor: "bg-gray-50 dark:bg-gray-800/40", hoverColor: "hover:bg-gray-100 dark:hover:bg-gray-700/60" },
     
-    // Mobile & Others
-    "React Native": { color: "text-blue-600 dark:text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", hoverColor: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
-    "YFinance API": { color: "text-indigo-600 dark:text-indigo-400", bgColor: "bg-indigo-50 dark:bg-indigo-900/20", hoverColor: "hover:bg-indigo-100 dark:hover:bg-indigo-900/30" },
-    "LSTM": { color: "text-purple-600 dark:text-purple-400", bgColor: "bg-purple-50 dark:bg-purple-900/20", hoverColor: "hover:bg-purple-100 dark:hover:bg-purple-900/30" },
+    // Specialized Technologies - Cyan
+    "React Native": { color: "text-cyan-600 dark:text-cyan-400", bgColor: "bg-cyan-50 dark:bg-cyan-900/20", hoverColor: "hover:bg-cyan-100 dark:hover:bg-cyan-900/30" },
+    "YFinance API": { color: "text-cyan-600 dark:text-cyan-400", bgColor: "bg-cyan-50 dark:bg-cyan-900/20", hoverColor: "hover:bg-cyan-100 dark:hover:bg-cyan-900/30" },
+    "LSTM": { color: "text-cyan-600 dark:text-cyan-400", bgColor: "bg-cyan-50 dark:bg-cyan-900/20", hoverColor: "hover:bg-cyan-100 dark:hover:bg-cyan-900/30" },
   }
   
-  return categories[tech] || { color: "text-gray-600 dark:text-gray-400", bgColor: "bg-gray-100 dark:bg-gray-800", hoverColor: "hover:bg-gray-200 dark:hover:bg-gray-700" }
+  return categories[tech] || { color: "text-gray-600 dark:text-gray-400", bgColor: "bg-gray-50 dark:bg-gray-800/40", hoverColor: "hover:bg-gray-100 dark:hover:bg-gray-700/60" }
 }
 
 // Professional Hero Section
@@ -592,56 +618,56 @@ function ModernSkillsSection() {
     {
       title: "Frontend Development",
       skills: [
-        { name: "React.js", icon: <Code className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
-        { name: "Next.js", icon: <Globe className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
-        { name: "TypeScript", icon: <FileCode className="w-5 h-5" />, color: "text-blue-700 dark:text-blue-300" },
-        { name: "Tailwind CSS", icon: <Palette className="w-5 h-5" />, color: "text-cyan-600 dark:text-cyan-400" },
-        { name: "Material UI", icon: <Palette className="w-5 h-5" />, color: "text-indigo-600 dark:text-indigo-400" },
-        { name: "Framer Motion", icon: <Sparkles className="w-5 h-5" />, color: "text-purple-600 dark:text-purple-400" },
+        { name: "React.js", icon: <SiReact className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
+        { name: "Next.js", icon: <SiNextdotjs className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
+        { name: "TypeScript", icon: <SiTypescript className="w-5 h-5" />, color: "text-blue-700 dark:text-blue-300" },
+        { name: "Tailwind CSS", icon: <SiTailwindcss className="w-5 h-5" />, color: "text-cyan-600 dark:text-cyan-400" },
+        { name: "Material UI", icon: <SiMui className="w-5 h-5" />, color: "text-indigo-600 dark:text-indigo-400" },
+        { name: "Framer Motion", icon: <SiFramer className="w-5 h-5" />, color: "text-purple-600 dark:text-purple-400" },
       ],
-      icon: <Code className="w-8 h-8" />,
+      icon: <SiReact className="w-8 h-8" />,
       gradient: "from-blue-500 to-cyan-500",
       count: 6,
     },
     {
       title: "Backend Development",
       skills: [
-        { name: "Node.js", icon: <Server className="w-5 h-5" />, color: "text-green-600 dark:text-green-400" },
-        { name: "Express", icon: <Server className="w-5 h-5" />, color: "text-gray-700 dark:text-gray-300" },
-        { name: "NestJS", icon: <Layers className="w-5 h-5" />, color: "text-red-600 dark:text-red-400" },
-        { name: "FastAPI", icon: <Zap className="w-5 h-5" />, color: "text-emerald-600 dark:text-emerald-400" },
-        { name: "Python", icon: <Code className="w-5 h-5" />, color: "text-yellow-600 dark:text-yellow-400" },
-        { name: "Java", icon: <Code className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
+        { name: "Node.js", icon: <SiNodedotjs className="w-5 h-5" />, color: "text-green-600 dark:text-green-400" },
+        { name: "Express", icon: <SiExpress className="w-5 h-5" />, color: "text-gray-700 dark:text-gray-300" },
+        { name: "NestJS", icon: <SiNestjs className="w-5 h-5" />, color: "text-red-600 dark:text-red-400" },
+        { name: "FastAPI", icon: <SiFastapi className="w-5 h-5" />, color: "text-emerald-600 dark:text-emerald-400" },
+        { name: "Python", icon: <SiPython className="w-5 h-5" />, color: "text-yellow-600 dark:text-yellow-400" },
+        { name: "JavaScript", icon: <SiJavascript className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
       ],
-      icon: <Database className="w-8 h-8" />,
+      icon: <SiNodedotjs className="w-8 h-8" />,
       gradient: "from-green-500 to-emerald-500",
       count: 6,
     },
     {
       title: "Database & Cloud",
       skills: [
-        { name: "PostgreSQL", icon: <Database className="w-5 h-5" />, color: "text-blue-700 dark:text-blue-300" },
-        { name: "MySQL", icon: <Database className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
-        { name: "MongoDB", icon: <Database className="w-5 h-5" />, color: "text-green-600 dark:text-green-400" },
-        { name: "AWS", icon: <Cloud className="w-5 h-5" />, color: "text-orange-500 dark:text-orange-300" },
-        { name: "Docker", icon: <Settings className="w-5 h-5" />, color: "text-blue-500 dark:text-blue-300" },
-        { name: "Vercel", icon: <Cloud className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
+        { name: "PostgreSQL", icon: <SiPostgresql className="w-5 h-5" />, color: "text-blue-700 dark:text-blue-300" },
+        { name: "MySQL", icon: <SiMysql className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
+        { name: "MongoDB", icon: <SiMongodb className="w-5 h-5" />, color: "text-green-600 dark:text-green-400" },
+        { name: "AWS", icon: <SiAmazon className="w-5 h-5" />, color: "text-orange-500 dark:text-orange-300" },
+        { name: "Docker", icon: <SiDocker className="w-5 h-5" />, color: "text-blue-500 dark:text-blue-300" },
+        { name: "Vercel", icon: <SiVercel className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
       ],
-      icon: <Cloud className="w-8 h-8" />,
+      icon: <SiPostgresql className="w-8 h-8" />,
       gradient: "from-purple-500 to-pink-500",
       count: 6,
     },
     {
-      title: "Mobile & Tools",
+      title: "Tools & Others",
       skills: [
-        { name: "React Native", icon: <Smartphone className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
-        { name: "Git", icon: <Code className="w-5 h-5" />, color: "text-red-600 dark:text-red-400" },
-        { name: "GitHub", icon: <Github className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
-        { name: "VS Code", icon: <Monitor className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
-        { name: "IntelliJ IDEA", icon: <Monitor className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
-        { name: "Figma", icon: <Palette className="w-5 h-5" />, color: "text-purple-600 dark:text-purple-400" },
+        { name: "Git", icon: <SiGit className="w-5 h-5" />, color: "text-red-600 dark:text-red-400" },
+        { name: "GitHub", icon: <SiGithub className="w-5 h-5" />, color: "text-gray-800 dark:text-gray-200" },
+        { name: "VS Code", icon: <VscCode className="w-5 h-5" />, color: "text-blue-600 dark:text-blue-400" },
+        { name: "IntelliJ IDEA", icon: <SiIntellijidea className="w-5 h-5" />, color: "text-orange-600 dark:text-orange-400" },
+        { name: "Figma", icon: <SiFigma className="w-5 h-5" />, color: "text-purple-600 dark:text-purple-400" },
+        { name: "Bootstrap", icon: <SiBootstrap className="w-5 h-5" />, color: "text-purple-700 dark:text-purple-300" },
       ],
-      icon: <Smartphone className="w-8 h-8" />,
+      icon: <SiGit className="w-8 h-8" />,
       gradient: "from-orange-500 to-red-500",
       count: 6,
     },
