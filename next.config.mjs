@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ["@react-three/drei", "three"],
   eslint: {
     ignoreDuringBuilds: true,
   },
