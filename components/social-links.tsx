@@ -20,7 +20,7 @@ const socialLinks = [
   },
   {
     name: "Email",
-    url: "mailto:theekshana.22@cse.mrc.ac.lk",
+    url: "mailto:theekshana.22@cse.mrt.ac.lk",
     icon: Mail,
     color: "hover:text-green-600",
     description: "Get in touch directly",
