@@ -322,11 +322,11 @@ function ModernAboutSection() {
             <div className="flex flex-wrap gap-4 mb-8">
               <Button
                 variant="outline"
-                onClick={() => window.open("mailto:theekshana.22@cse.mrc.ac.lk", "_blank")}
+                onClick={() => window.open("mailto:theekshana.22@cse.mrt.ac.lk", "_blank")}
                 className="flex items-center gap-2 bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900/20 border-2 px-6 py-3 rounded-full cursor-pointer"
               >
                 <Mail className="w-5 h-5" />
-                theekshana.22@cse.mrc.ac.lk
+                theekshana.22@cse.mrt.ac.lk
               </Button>
               <Button
                 variant="outline"
@@ -806,11 +806,11 @@ function ModernContactSection() {
         >
           <GlassCard
             className="p-8 text-center hover:bg-white/20 cursor-pointer"
-            onClick={() => window.open("mailto:theekshana.22@cse.mrc.ac.lk", "_blank")}
+            onClick={() => window.open("mailto:theekshana.22@cse.mrt.ac.lk", "_blank")}
           >
             <Mail className="w-12 h-12 mx-auto mb-6 text-blue-400" />
             <h3 className="text-2xl font-bold mb-4">Email</h3>
-            <p className="text-gray-300 text-lg">theekshana.22@cse.mrc.ac.lk</p>
+            <p className="text-gray-300 text-lg">theekshana.22@cse.mrt.ac.lk</p>
           </GlassCard>
 
           <GlassCard
@@ -849,7 +849,7 @@ function ModernContactSection() {
           <Button
             size="lg"
             variant="outline"
-            onClick={() => window.open("mailto:theekshana.22@cse.mrc.ac.lk", "_blank")}
+            onClick={() => window.open("mailto:theekshana.22@cse.mrt.ac.lk", "_blank")}
             className="border-2 border-white/30 text-white hover:bg-white hover:text-black bg-white/10 backdrop-blur-md px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 cursor-pointer"
           >
             <Mail className="w-6 h-6 mr-2" />
