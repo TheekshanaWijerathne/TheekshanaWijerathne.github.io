@@ -223,13 +223,15 @@ function ModernHeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
           >
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white border-0 px-8 py-3 text-base font-medium rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
-            >
-              <Mail className="w-5 h-5 mr-2" />
-              Get In Touch
-            </Button>
+          <a href="mailto:theekshana.22@cse.mrt.ac.lk">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white border-0 px-8 py-3 text-base font-medium rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+                >
+                  <Mail className="w-5 h-5 mr-2" />
+                  Get In Touch
+                </Button>
+              </a>
             <Button
               size="lg"
               variant="outline"
